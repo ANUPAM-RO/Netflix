@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import {useRef, useState} from 'react';
 import "./register.scss"
 const Register = () => {
@@ -17,7 +18,9 @@ const Register = () => {
         <div className="top">
             <div className="wrapper">
                 <img src="http://assets.stickpng.com/images/580b57fcd9996e24bc43c529.png" className='logo' alt="" />
-                <button className='loginButton'>Sign In</button>
+               
+                <button className='loginButton'> Sign In </button>
+               
         </div>
         </div>
         <div className="container">

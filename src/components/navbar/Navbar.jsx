@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import "./navbar.scss";
+import { Link } from 'react-router-dom';
 const Navbar = () => {
 
   const [isScrolled , setisScrolled] = useState(false);
@@ -13,11 +14,22 @@ const Navbar = () => {
         <div className="container">
             <div className="left">
                 <img src="http://assets.stickpng.com/images/580b57fcd9996e24bc43c529.png" alt="" />
+                <Link  to = "/" className='link'>
                 <span>Home</span>
+                </Link>
+                <Link  to = "/series" className='link'>
                 <span>Series</span>
+                </Link>
+                <Link  to = "/movies" className='link'>
                 <span>Movies</span>
+                </Link>
+                <Link  to = "/" className='link'>
                 <span>New and Popular</span>
+                </Link>
+                <Link  to = "/movies" className='link'>
                 <span>My List</span>
+                </Link>
+                 
             </div>
             <div className="right">
             
@@ -29,8 +41,13 @@ const Navbar = () => {
               <div className="profile">
               <i class="fas fa-sort-down" ></i>
               <div className="options">
+
                 <span>Settings</span>
+                <Link  to = "/logout" className='link'>
                 <span>Logout</span>
+                </Link>
+           
+
               </div>
               </div>
               
