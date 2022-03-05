@@ -1,0 +1,26 @@
+.newProduct {
+  flex: 4;
+  margin-left: 20px;
+}
+.newProductForm {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.newProductForm > input {
+  width: 200px;
+  border: none;
+}
+.newProductForm > select {
+  width: 100px;
+}
+.newProductCreate {
+  width: 200px;
+  background-color: blue;
+  color: white;
+  padding: 7px 10px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  cursor: pointer;
+}
