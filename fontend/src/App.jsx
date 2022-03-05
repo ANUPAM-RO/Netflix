@@ -31,6 +31,8 @@ const App =()=> {
         <Route  path="/movies" component={Home} type="movies" />
         <Route  path="/series" component={Home} type="series" />
         <Route  path="/watch" component={Watch} />
+        <Route  path="/register" component={Register} />
+        <Route  path="/login" component={Login} />
         <Route  path="/logout" component={Logout} />
         </>
       )
