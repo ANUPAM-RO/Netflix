@@ -1,34 +1,41 @@
 const mongoose = require("mongoose");
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const UserSchema = new mongoose.Schema({
-    username:{
-        type: String, 
-        required: true, 
-        unique:true},
-    email:{
-        type:String, 
-        required: true, 
-        unique:true },
-    password:{
-        type:String, 
-        required: true},
-    profilePic:{
-        type:String,
-        default:""
+const UserSchema = new mongoose.Schema(
+  {
+    username: {
+      type: String,
+      required: true,
+      unique: true,
     },
-    isAdmin:{
-        type: Boolean,
-        default: false
+    email: {
+      type: String,
+      required: true,
+      unique: true,
     },
-    tokens:[{
-        token:{
-            type: String,
-            required: true
-        }
-    }]
-},{timestamps: true}
+    password: {
+      type: String,
+      required: true,
+    },
+    profilePic: {
+      type: String,
+      default: "",
+    },
+    isAdmin: {
+      type: Boolean,
+      default: false,
+    },
+    tokens: [
+      {
+        token: {
+          type: String,
+          required: true,
+        },
+      },
+    ],
+  },
+  { timestamps: true }
 );
 
 module.exports = mongoose.model("User", UserSchema);

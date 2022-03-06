@@ -5,7 +5,7 @@ const User = require('../models/User');
 
 
 const register = (req, res) => {
-    const hashedPassword = bcrypt.hash(req.body.password, 8);
+    const hashedPassword = bcrypt.hashSync(req.body.password, 8);
     let newUser = new User({
         username: req.body.username,
         email: req.body.email,
