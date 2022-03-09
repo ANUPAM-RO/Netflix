@@ -19,15 +19,15 @@ const ListItem = ({ index, item }) => {
         const res = await axios.get("/movies/find/" + item, {
           headers: {
             token:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjIzNzdhZWZiNDhmMGNlZDljZmM1Y2EiLCJ1c2VybmFtZSI6IkFudXBhbSBSb3kiLCJlbWFpbCI6ImFudXBhbXJveTU3NUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQwOCQyUTZWMlVFYmRZeXIuaUQyeEJNanp1WFFzNHd6T0Y5RnZWelBmSTU0aUZGTnFGTGR5M3pjVyIsInByb2ZpbGVQaWMiOiIiLCJpc0FkbWluIjp0cnVlLCJ0b2tlbnMiOltdLCJjcmVhdGVkQXQiOiIyMDIyLTAzLTA1VDE0OjQ2OjA2LjE1NVoiLCJ1cGRhdGVkQXQiOiIyMDIyLTAzLTA1VDE0OjQ2OjA2LjE1NVoiLCJfX3YiOjAsImlhdCI6MTY0NjU3ODI4MywiZXhwIjoxNjQ2NTgxODgzfQ.qG2w2ov1noyN0WKpTxYVQWRathTYYr23SPyBBeqx5lc",
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjIzNzdhZWZiNDhmMGNlZDljZmM1Y2EiLCJ1c2VybmFtZSI6IkFudXBhbSBSb3kiLCJlbWFpbCI6ImFudXBhbXJveTU3NUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQwOCQyUTZWMlVFYmRZeXIuaUQyeEJNanp1WFFzNHd6T0Y5RnZWelBmSTU0aUZGTnFGTGR5M3pjVyIsInByb2ZpbGVQaWMiOiIiLCJpc0FkbWluIjp0cnVlLCJ0b2tlbnMiOltdLCJjcmVhdGVkQXQiOiIyMDIyLTAzLTA1VDE0OjQ2OjA2LjE1NVoiLCJ1cGRhdGVkQXQiOiIyMDIyLTAzLTA1VDE0OjQ2OjA2LjE1NVoiLCJfX3YiOjAsImlhdCI6MTY0NjgwNjMwOCwiZXhwIjoxNjQ2ODQyMzA4fQ.lCEjf5lEoBsamLneg-Vo7gdNxEqzDibiOFD7TSBhf2A",
           },
         });
-        console.log(res)
         setMovie(res.data);
       } catch (err) {
         console.log(err);
       }
     };
+    getMovie()
   }, [item]);
 
   return (
@@ -41,7 +41,7 @@ const ListItem = ({ index, item }) => {
         <img src={movie.img} alt="" />
         {isHovered && (
           <>
-            <video src={movie.tailor} autoPlay loop />
+            <video src={movie.trailer} autoPlay loop />
             <div className="itemInfo">
               <div className="icons">
                 <FontAwesomeIcon className="icon" icon={faPlay} />

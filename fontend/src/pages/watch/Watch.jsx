@@ -12,7 +12,7 @@ const Watch = () => {
         </div>
        
         <video className='video' autoPlay progress controls 
-        src="Badshah - Jugnu (Official Video) - Nikhita Gandhi - Akanksha Sharma.mp4"/>
+        src="https://www.youtube.com/watch?v=sqmNziU3OxQ"/>
     </div>
   )
 }
