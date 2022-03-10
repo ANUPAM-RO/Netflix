@@ -12,7 +12,7 @@ const Watch = () => {
         </div>
        
         <video className='video' autoPlay progress controls 
-        src="https://www.youtube.com/watch?v=sqmNziU3OxQ"/>
+        src="music.mp4"/>
     </div>
   )
 }

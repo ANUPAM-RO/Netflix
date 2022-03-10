@@ -36,7 +36,7 @@ const List = ({ list }) => {
         <div className="container" ref={listRef}>
           {list.content.map((item, i) => (
             <ListItem index={i} item={item} />
-  ))}
+          ))}
         </div>
         <FontAwesomeIcon
           icon={faArrowRight}

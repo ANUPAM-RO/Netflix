@@ -1,8 +1,28 @@
-import React from 'react';
+import React, { useEffect , useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfo, faPlay } from '@fortawesome/free-solid-svg-icons';
 import "./featured.scss";
+import axios from 'axios';
 const Featured = ({type}) => {
+  const [content, setContent] = useState({});
+
+  useEffect(() => {
+    const getRandomContent = async () => {
+      try {
+        const res = await axios.get(`/movies/random?type=${type}`, {
+          headers: {
+            token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjIzNzdhZWZiNDhmMGNlZDljZmM1Y2EiLCJ1c2VybmFtZSI6IkFudXBhbSBSb3kiLCJlbWFpbCI6ImFudXBhbXJveTU3NUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQwOCQyUTZWMlVFYmRZeXIuaUQyeEJNanp1WFFzNHd6T0Y5RnZWelBmSTU0aUZGTnFGTGR5M3pjVyIsInByb2ZpbGVQaWMiOiIiLCJpc0FkbWluIjp0cnVlLCJ0b2tlbnMiOltdLCJjcmVhdGVkQXQiOiIyMDIyLTAzLTA1VDE0OjQ2OjA2LjE1NVoiLCJ1cGRhdGVkQXQiOiIyMDIyLTAzLTA1VDE0OjQ2OjA2LjE1NVoiLCJfX3YiOjAsImlhdCI6MTY0Njg0MjUzMn0.kG7yq84Vx5WeZv7fcjWehGq8aqVFNo5yv1bH7-ThFCo",
+          },
+        });
+        setContent(res.data[0]);
+      } catch (error) {
+        console.log(error)
+  
+      }
+    };
+    getRandomContent();
+  }, [type]);
+  console.log(content)
   return (
     <div className="featured">
       {type && (
@@ -24,11 +44,11 @@ const Featured = ({type}) => {
           </select>
           </div>
       )}
-        <img src="https://wallpaperaccess.com/full/329583.jpg" alt=""/>
+        <img src={content.img} alt=""/>
         <div className="info">
-            <img src="https://linksind.net/doctor/featured.jpg" />
+            <img src={content.imgTitle} alt="" />
         <span className='desc'>
-            Netflix is Movies website.
+            {content.desc}
         </span>
         <div className="buttons">
             <button className="play">

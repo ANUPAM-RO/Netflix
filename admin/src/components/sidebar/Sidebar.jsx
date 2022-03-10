@@ -3,7 +3,7 @@ import "./sidebar.css";
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowTrendUp, faCalculator, faChartLine, faHouse, faMailBulk, faManatSign, faReceipt, faRightLeft } from '@fortawesome/free-solid-svg-icons';
-import { faFaceSmile, faMessage, faUser } from '@fortawesome/free-regular-svg-icons';
+import { faFaceSmile, faMessage, faPlayCircle, faUser } from '@fortawesome/free-regular-svg-icons';
 const Sidebar = () => {
   return (
     <div className="sidebar">
@@ -38,9 +38,9 @@ const Sidebar = () => {
                         </Link>
                     </li>
                     <li className="sidebarListItem">
-                        <Link to="/products" className='link'>
-                    <FontAwesomeIcon icon={faCalculator} className='sidebarIcons'/>
-                        Products
+                        <Link to="/movies" className='link'>
+                    <FontAwesomeIcon icon={faPlayCircle} className='sidebarIcons'/>
+                        Movies
                         </Link>
                     
                     </li>

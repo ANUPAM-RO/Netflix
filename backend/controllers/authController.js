@@ -39,7 +39,7 @@ const login = (req, res) => {
             console.log(isMatch);
             if (isMatch) {
                 const token = jwt.sign(user.toJSON(), process.env.SECRET_KEY, {
-                    expiresIn: '10h'
+                    // expiresIn: '10h'
                 });
                 req.user = user;
                 res.json({
