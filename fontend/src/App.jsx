@@ -4,9 +4,11 @@ import Watch from "./pages/watch/Watch";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import { BrowserRouter , Switch , Route,Redirect} from "react-router-dom";
-import Logout from "./pages/logout/Logout";
+import Logout from "./components/logout/Logout";
+import { useContext } from "react";
+import { AuthContext } from "./authContext/AuthContext";
 const App =()=> {
-  const user = true;
+  const {user} = useContext(AuthContext);
   return (
     <>
    <BrowserRouter>
@@ -18,7 +20,7 @@ const App =()=> {
 
        <Route path="/register" >
      {!user ?  <Register/> : 
-       <Redirect to ="/"/>}
+       <Redirect to ="/login"/>}
        </Route> 
 
       <Route path="/login" >
@@ -31,8 +33,6 @@ const App =()=> {
         <Route  path="/movies" component={Home} type="movies" />
         <Route  path="/series" component={Home} type="series" />
         <Route  path="/watch" component={Watch} />
-        <Route  path="/register" component={Register} />
-        <Route  path="/login" component={Login} />
         <Route  path="/logout" component={Logout} />
         </>
       )

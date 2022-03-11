@@ -4,7 +4,6 @@ import axios from "axios";
 import Chart from "../../chart/Chart";
 import Info from "../../featuredinfo/Info";
 import "./home.css";
-import { UserData } from "../../../DummyData";
 import WidgetSm from "../../widgetSm/WidgetSm";
 import WidgetLg from "../../widgetLg/WidgetLg";
 const Home = () => {
@@ -34,7 +33,7 @@ const Home = () => {
         const res = await axios.get("/users/stats", {
           headers: {
             token:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjIzNzdhZWZiNDhmMGNlZDljZmM1Y2EiLCJ1c2VybmFtZSI6IkFudXBhbSBSb3kiLCJlbWFpbCI6ImFudXBhbXJveTU3NUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQwOCQyUTZWMlVFYmRZeXIuaUQyeEJNanp1WFFzNHd6T0Y5RnZWelBmSTU0aUZGTnFGTGR5M3pjVyIsInByb2ZpbGVQaWMiOiIiLCJpc0FkbWluIjp0cnVlLCJ0b2tlbnMiOltdLCJjcmVhdGVkQXQiOiIyMDIyLTAzLTA1VDE0OjQ2OjA2LjE1NVoiLCJ1cGRhdGVkQXQiOiIyMDIyLTAzLTA1VDE0OjQ2OjA2LjE1NVoiLCJfX3YiOjAsImlhdCI6MTY0Njg0MjUzMn0.kG7yq84Vx5WeZv7fcjWehGq8aqVFNo5yv1bH7-ThFCo",
+              "Bearer yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjIzNzdhZWZiNDhmMGNlZDljZmM1Y2EiLCJ1c2VybmFtZSI6IkFudXBhbSBSb3kiLCJlbWFpbCI6ImFudXBhbXJveTU3NUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQwOCQyUTZWMlVFYmRZeXIuaUQyeEJNanp1WFFzNHd6T0Y5RnZWelBmSTU0aUZGTnFGTGR5M3pjVyIsInByb2ZpbGVQaWMiOiIiLCJpc0FkbWluIjp0cnVlLCJ0b2tlbnMiOltdLCJjcmVhdGVkQXQiOiIyMDIyLTAzLTA1VDE0OjQ2OjA2LjE1NVoiLCJ1cGRhdGVkQXQiOiIyMDIyLTAzLTA1VDE0OjQ2OjA2LjE1NVoiLCJfX3YiOjAsImlhdCI6MTY0NjkzMDgwNX0.QdBpqfHL94i4M9txWcTjY_NkerEMk8CIdm4ub0dc5Sc",
           },
         });
         const statslist = res.data.sort(function (a, b) {
@@ -53,7 +52,7 @@ const Home = () => {
     };
     getStats();
   }, [MONTHS]);
-  // console.log(userState);
+ 
   return (
     <div className="home">
       <Info />

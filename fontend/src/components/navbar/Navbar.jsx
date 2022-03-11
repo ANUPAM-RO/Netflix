@@ -1,10 +1,14 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState , useContext } from 'react';
 import "./navbar.scss";
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../authContext/AuthContext';
+import { logout } from '../../authContext/AuthAction';
 const Navbar = () => {
 
-  const [isScrolled , setisScrolled] = useState(false);
+  const [isScrolled, setisScrolled] = useState(false);
+  
+  const { dispatch } = useContext(AuthContext)
   window.onscroll = () =>{
     setisScrolled(window.pageYOffset === 0 ? false : true);
     return() => (window.onscroll = null);
@@ -37,14 +41,14 @@ const Navbar = () => {
             <i class="fas fa-search" ></i>
               <span>KID</span>
               <i class="fas fa-bell" ></i>
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTISTR4wXzwQBVqjP1EJr1IPRxNLNo_zYy98w&usqp=CAU"/>
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTISTR4wXzwQBVqjP1EJr1IPRxNLNo_zYy98w&usqp=CAU" alt=''/>
               <div className="profile">
               <i class="fas fa-sort-down" ></i>
               <div className="options">
 
                 <span>Settings</span>
                 <Link  to = "/logout" className='link'>
-                <span>Logout</span>
+                <span onClick={()=> dispatch(logout())}>Logout</span>
                 </Link>
            
 

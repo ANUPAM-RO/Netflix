@@ -1,48 +1,63 @@
-import React from 'react'
+import React, { useContext , useState, useEffect} from 'react'
 import "./productList.css"
-import { useState} from 'react'
 import { productRows } from '../../../DummyData';
 import { DataGrid } from '@material-ui/data-grid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import {Link} from "react-router-dom"
+import { MovieContext } from '../../../context/movieContext/MovieContext';
+import { getMovies } from '../../../context/movieContext/apiCalls';
 const ProductList = () => {
-  const[data , setData] = useState(productRows)
+  const [data, setData] = useState(productRows);
+  const { movies, dispatch } = useContext(MovieContext); 
+
+  useEffect(() => {
+    getMovies(dispatch)
+  }, [dispatch])
   const handelDelete = (id) =>{
-    setData(data.filter((item)=> item.id !== id))
-};
+    // setData(data.filter((item)=> item.id !== id))
+  };
+  console.log(movies)
 const columns = [
     { field: 'id', headerName: 'ID', width: 100 },
     {
-      field: 'product',
-      headerName: 'Product',
+      field: 'movie',
+      headerName: 'movie',
       width: 200,
       renderCell: (params) =>{
           return(
-              <div className='productListItem'>
-                  <img className='productListImg' src= {params.row.img} alt="" />
-                  {params.row.name}
+              <div className='movieListItem'>
+                  <img className='movieListImg' src= {params.row.img} alt="" />
+                  {params.row.title}
               </div>
           )
       }
      
     },
     {
-      field: 'stock',
-      headerName: 'Stock',
+      field: 'genre',
+      headerName: 'Genre',
       width: 150,
-      editable: true,
+  },
+     {
+      field: 'year',
+      headerName: 'Year',
+      width: 150,
+    },
+     {
+      field: 'genre',
+      headerName: 'Genre',
+      width: 150,
+    },
+     {
+      field: 'limit',
+      headerName: 'Limit',
+      width: 150,
     },
     {
-      field: 'status',
-      headerName: 'Status',
-      width: 120,
-      editable: true,
-    },
-    {
-      field: 'price',
-      headerName: 'Price',
-      width: 160
+      field: 'isSeries',
+      headerName: 'isSeries',
+      width: 150,
     },
     {
         field:"action",
@@ -64,11 +79,12 @@ const columns = [
   return (
     <div className='productList'>
        <DataGrid
-        rows={data}
+        rows={movies}
         columns={columns}
         pageSize={10}
         checkboxSelection
         disableSelectionOnClick
+        getRowId={r=>r._id}
       />
     </div>
   )

@@ -5,6 +5,7 @@ const User = require('../models/User');
 
 
 const register = (req, res) => {
+    console.log(req.body)
     const hashedPassword = bcrypt.hashSync(req.body.password, 8);
     let newUser = new User({
         username: req.body.username,
@@ -22,10 +23,10 @@ const register = (req, res) => {
 }
 
 const login = (req, res) => {
-    const username = req.body.username;
+    const email = req.body.email;
     const password = req.body.password;
     User.findOne({
-        username: username
+        email: email
     }, (err, user) => {
         if (err) throw err;
         if (!user) {
@@ -44,8 +45,7 @@ const login = (req, res) => {
                 req.user = user;
                 res.json({
                     success: true,
-                    username: username,
-                    password:password,
+                    ...user._doc,
                     token: token
                 });
             } else {
