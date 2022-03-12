@@ -18,13 +18,7 @@
   border-radius: 5px;
   cursor: pointer;
 }
-.productTop {
-  display: flex;
-}
-.productTopLeft,
-.productTopRight {
-  flex: 1;
-}
+
 .productTopRight {
   padding: 20px;
   margin: 20px;
@@ -38,6 +32,7 @@
   border-radius: 50%;
   object-fit: cover;
   margin-right: 20px;
+  margin-bottom: 10px;
 }
 .productInfoTop {
   display: flex;
@@ -54,6 +49,10 @@
 .productInfoItem {
   display: flex;
   justify-content: space-between;
+}
+.productInfoKey {
+  margin-right: 20px;
+  text-align: center;
 }
 .productInfoValue {
   font-weight: 300;

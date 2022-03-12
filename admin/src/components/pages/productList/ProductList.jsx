@@ -1,25 +1,22 @@
-import React, { useContext , useState, useEffect} from 'react'
+import React, { useContext , useEffect} from 'react'
 import "./productList.css"
-import { productRows } from '../../../DummyData';
 import { DataGrid } from '@material-ui/data-grid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import {Link} from "react-router-dom"
 import { MovieContext } from '../../../context/movieContext/MovieContext';
-import { getMovies } from '../../../context/movieContext/apiCalls';
+import {deleteMovie, getMovies } from '../../../context/movieContext/apiCalls';
 const ProductList = () => {
-  const [data, setData] = useState(productRows);
   const { movies, dispatch } = useContext(MovieContext); 
 
   useEffect(() => {
     getMovies(dispatch)
   }, [dispatch])
   const handelDelete = (id) =>{
-    // setData(data.filter((item)=> item.id !== id))
+   deleteMovie(id,dispatch)
   };
-  console.log(movies)
 const columns = [
-    { field: 'id', headerName: 'ID', width: 100 },
+    { field: '_id', headerName: 'ID', width: 100 },
     {
       field: 'movie',
       headerName: 'movie',
@@ -66,22 +63,22 @@ const columns = [
         renderCell: (params) =>{
             return(
                 <>
-                <Link to ={"/product/"+params.row.id}>
-                <button className='productListEdit'>Edit</button>
+                <Link to ={{pathname: "/product/" + params.row._id, movie: params.row}}>
+                <button className='movieListEdit'>Edit</button>
                 </Link>
                
-                <FontAwesomeIcon icon={faTrash} className="productListDelete" onClick={()=>handelDelete(params.row.id) }/>
+                <FontAwesomeIcon icon={faTrash} className="movieListDelete" onClick={()=>handelDelete(params.row._id) }/>
                 </>
                 )
         }
     }
   ];
   return (
-    <div className='productList'>
+    <div className='movieList'>
        <DataGrid
         rows={movies}
         columns={columns}
-        pageSize={10}
+        pageSize={8}
         checkboxSelection
         disableSelectionOnClick
         getRowId={r=>r._id}

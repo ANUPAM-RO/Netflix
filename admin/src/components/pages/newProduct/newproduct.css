@@ -2,17 +2,37 @@
   flex: 4;
   margin-left: 20px;
 }
+.newProductTitle {
+  text-align: center;
+  color: green;
+}
 .newProductForm {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 30px;
 }
-.newProductForm > input {
-  width: 200px;
-  border: none;
+.newProductItem > input {
+  padding: 10px;
 }
-.newProductForm > select {
-  width: 100px;
+.newProductItem > label {
+  color: gray;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.newProductItem > select {
+  padding: 10px;
+}
+.newProductItem {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .newProductCreate {
   width: 200px;
@@ -23,4 +43,5 @@
   border-radius: 5px;
   margin-top: 20px;
   cursor: pointer;
+  align-self: center;
 }

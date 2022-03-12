@@ -4,10 +4,11 @@ const MovieSchema = new mongoose.Schema(
   {
     title: {
       type: String,
-      required: true,
-      unique: true,
     },
     desc: {
+      type: String,
+    },
+    duration: {
       type: String,
     },
     img: {
@@ -29,7 +30,7 @@ const MovieSchema = new mongoose.Schema(
       type: Number,
     },
     limit: {
-      type: String,
+      type: Number,
     },
     genre: {
       type: String,
