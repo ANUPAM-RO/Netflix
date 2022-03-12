@@ -21,7 +21,7 @@ router.post("/", verify, async(req,res)=>{
 
 // DELETE
 
-router.delete("/", verify, async(req,res)=>{
+router.delete("/:id", verify, async(req,res)=>{
     if(req.user.isAdmin){
     try{
         const saveList = await List.findByIdAndDelete(req.params.id);
