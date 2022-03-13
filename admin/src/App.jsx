@@ -13,14 +13,14 @@ import UserList from "./components/pages/userList/UserList";
 import User from "./components/pages/user/User";
 import Newuser from "./components/pages/newUser/Newuser";
 import ProductList from "./components/pages/productList/ProductList";
-import Product from "./components/pages/product/Product";
-import NewProduct from "./components/pages/newProduct/NewProduct";
 import Login from "./components/pages/login/Login";
 import { useContext } from "react";
 import { AuthContext } from "./context/authContext/AuthContext";
 import MovieList from "./components/pages/movieList/movieList";
 import List from "./components/pages/list/List";
 import NewList from "./components/pages/newList/NewList";
+import Movie from "./components/pages/movie/Movie";
+import NewMovie from "./components/pages/newMovie/NewMovie";
 function App() {
   const { user } = useContext(AuthContext);
   return (
@@ -57,11 +57,11 @@ function App() {
               <Route path="/newlist">
                 <NewList />
               </Route>
-              <Route path="/product/:productId">
-                <Product />
+              <Route path="/movie/:movieId">
+                <Movie />
               </Route>
-              <Route path="/newproduct">
-                <NewProduct />
+              <Route path="/newmovie">
+                <NewMovie />
               </Route>
             </div>
           </>

@@ -14,31 +14,37 @@ const ListItem = ({ index, item }) => {
   const [movie, setMovie] = useState({});
 
   useEffect(() => {
+    let isMounted = true;
     const getMovie = async () => {
       try {
         const res = await axios.get("/movies/find/" + item, {
-          headers: {
-            token:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjIzNzdhZWZiNDhmMGNlZDljZmM1Y2EiLCJ1c2VybmFtZSI6IkFudXBhbSBSb3kiLCJlbWFpbCI6ImFudXBhbXJveTU3NUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQwOCQyUTZWMlVFYmRZeXIuaUQyeEJNanp1WFFzNHd6T0Y5RnZWelBmSTU0aUZGTnFGTGR5M3pjVyIsInByb2ZpbGVQaWMiOiIiLCJpc0FkbWluIjp0cnVlLCJ0b2tlbnMiOltdLCJjcmVhdGVkQXQiOiIyMDIyLTAzLTA1VDE0OjQ2OjA2LjE1NVoiLCJ1cGRhdGVkQXQiOiIyMDIyLTAzLTA1VDE0OjQ2OjA2LjE1NVoiLCJfX3YiOjAsImlhdCI6MTY0Njk3OTg3MH0.uxvziYwJHBYKO5EfuqC8rRxTDc-52FSPmSX0oCMKU1A",
-          },
+           headers: {
+                token: "Bearer " + JSON.parse(localStorage.getItem("user")).token,
+            },
         });
-        setMovie(res.data);
+        if (isMounted) {
+           setMovie(res.data);
+        } 
+       
       } catch (err) {
         console.log(err);
       }
     };
     getMovie();
+     return (() => {
+      isMounted = false;
+    })
   }, [item]);
 
   return (
-    <Link to={{ pathname: "/watch", movie: movie }}>
+    <Link to={{ pathname: "/watch", movie: movie }} >
       <div
         className="listitem"
         style={{ left: isHovered && index * 225 - 50 + index * 2.5 }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <img src={movie.img} alt="" />
+        <img src = {movie?.imgSm} alt="" />
         {isHovered && (
           <>
             <video src={movie.trailer} autoPlay loop />

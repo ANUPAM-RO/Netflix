@@ -5,15 +5,15 @@ import {
   getDownloadURL,
   getStorage,
 } from "firebase/storage";
-import "./newproduct.css";
+import "./newMovie.css";
 import storage from "../../../firebase";
 import { createMovie } from "../../../context/movieContext/apiCalls";
 import { MovieContext } from "../../../context/movieContext/MovieContext";
-const NewProduct = () => {
+const NewMovie = () => {
   const [movie, setMovie] = useState(null);
   const [img, setImg] = useState(null);
   const [imgTitle, setImgTitle] = useState(null);
-  const [trailor, setTraior] = useState(null);
+  const [trailer, setTrailer] = useState(null);
   const [imgSm, setImgSm] = useState(null);
   const [video, setVideo] = useState(null);
   const [uploaded, setUploaded] = useState(0);
@@ -67,7 +67,7 @@ const NewProduct = () => {
       { file: img, label: "img" },
       { file: imgTitle, label: "imgTitle" },
       { file: imgSm, label: "imgSm" },
-      { file: trailor, label: "trailor" },
+      { file: trailer, label: "trailer" },
       { file: video, label: "video" },
     ]);
   };
@@ -164,17 +164,17 @@ const NewProduct = () => {
           </div>
           <div className="newProductItem">
             <label>In Series?</label>
-            <select name="inSeries" id="isSeries" onChange={handelChange}>
+            <select name="isSeries" id="isSeries" onChange={handelChange}>
               <option value="false">No</option>
               <option value="true">Yes</option>
             </select>
           </div>
           <div className="newProductItem">
-            <label>Trailor</label>
+            <label>Trailer</label>
             <input
               type="file"
-              name="trailor"
-              onChange={(e) => setTraior(e.target.files[0])}
+              name="trailer"
+              onChange={(e) => setTrailer(e.target.files[0])}
             />
           </div>
           <div className="newProductItem">
@@ -202,4 +202,4 @@ const NewProduct = () => {
   );
 };
 
-export default NewProduct;
+export default NewMovie;

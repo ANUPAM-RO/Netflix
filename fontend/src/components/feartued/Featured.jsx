@@ -3,31 +3,38 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfo, faPlay } from '@fortawesome/free-solid-svg-icons';
 import "./featured.scss";
 import axios from 'axios';
-const Featured = ({type}) => {
+const Featured = ({type , setGenre}) => {
   const [content, setContent] = useState({});
 
   useEffect(() => {
+     let isMounted = true;
     const getRandomContent = async () => {
       try {
         const res = await axios.get(`/movies/random?type=${type}`, {
           headers: {
-            token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjIzNzdhZWZiNDhmMGNlZDljZmM1Y2EiLCJ1c2VybmFtZSI6IkFudXBhbSBSb3kiLCJlbWFpbCI6ImFudXBhbXJveTU3NUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQwOCQyUTZWMlVFYmRZeXIuaUQyeEJNanp1WFFzNHd6T0Y5RnZWelBmSTU0aUZGTnFGTGR5M3pjVyIsInByb2ZpbGVQaWMiOiIiLCJpc0FkbWluIjp0cnVlLCJ0b2tlbnMiOltdLCJjcmVhdGVkQXQiOiIyMDIyLTAzLTA1VDE0OjQ2OjA2LjE1NVoiLCJ1cGRhdGVkQXQiOiIyMDIyLTAzLTA1VDE0OjQ2OjA2LjE1NVoiLCJfX3YiOjAsImlhdCI6MTY0Njk3OTg3MH0.uxvziYwJHBYKO5EfuqC8rRxTDc-52FSPmSX0oCMKU1A",
-          },
+                token: "Bearer " + JSON.parse(localStorage.getItem("user")).token,
+            },
         });
-        setContent(res.data[0]);
+         if (isMounted) {
+            setContent(res.data[0]);
+        }
+       
       } catch (error) {
         console.log(error)
   
       }
     };
     getRandomContent();
+     return (() => {
+      isMounted = false;
+    })
   }, [type]);
   return (
     <div className="featured">
       {type && (
         <div className="category">
           <span>{type === "movie" ? "Movies" : "Series"}</span>
-          <select name="genre" id="genre">
+          <select name="genre" id="genre" onChange={(e) =>setGenre(e.target.value)}>
            <option >Genre</option> 
            <option value="adventure">Adventure</option>
            <option value="comedy">Comedy</option>

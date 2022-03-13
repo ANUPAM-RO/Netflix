@@ -30,10 +30,10 @@ const App =()=> {
     {
       user && (
         <>
-        <Route  path="/movies" component={Home} type="movie" />
-        <Route  path="/series" component={Home} type="series" />
-        <Route  path="/watch" component={Watch} />
-        <Route  path="/logout" component={Logout} />
+        <Route  path="/movies"><Home type="movie"/></Route>
+        <Route  path="/series" ><Home type="series"/></Route>
+        <Route  path="/watch" ><Watch/></Route>
+        <Route  path="/logout"><Logout/></Route>
         </>
       )
     }

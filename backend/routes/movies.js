@@ -21,8 +21,8 @@ router.post("/", verify, async(req,res)=>{
 
 //UPDATE
 
-router.put("/:id", verify, async(req,res)=>{
-    if(req.user.isAdmin){
+router.put("/:id", async(req,res)=>{
+ 
         
 
     try{
@@ -34,9 +34,6 @@ router.put("/:id", verify, async(req,res)=>{
         res.status(200).json(updatedMovie);
     }catch(error){
         res.status(500).json(error)
-    }
-    }else{
-        res.status(403).json("You are not allowed")
     }
 })
 
@@ -78,7 +75,7 @@ router.get("/random", verify, async(req,res)=>{
   const type = req.query.type;
   let movie;  
   try{
-       if(type == "series"){
+       if(type === "series"){
             movie = await Movie.aggregate([
                 { $match : {isSeries : true}},
                 { $sample: { size: 1}},

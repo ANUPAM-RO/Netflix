@@ -1,15 +1,15 @@
 import { useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faArrowLeft,
-  faArrowRight,
-  faListSquares,
+  faAngleLeft,
+  faAngleRight,
 } from "@fortawesome/free-solid-svg-icons";
 import ListItem from "../listitem/ListItem";
 import "./list.scss";
 const List = ({ list }) => {
   const [isMoved, setIsMoved] = useState(false);
   const [slideNumber, setSlideNumber] = useState(0);
+  const [clickLimit, setClickLimit] = useState(window.innerWidth / 230);
   const listRef = useRef();
   const handelClick = (direction) => {
     setIsMoved(true);
@@ -18,7 +18,7 @@ const List = ({ list }) => {
       setSlideNumber(slideNumber - 1);
       listRef.current.style.transform = `translateX(${230 + distance}px)`;
     }
-    if (direction === "right" && slideNumber < 5) {
+    if (direction === "right" && slideNumber < 10 - clickLimit) {
       listRef.current.style.transform = `translateX(${-230 + distance}px)`;
       setSlideNumber(slideNumber + 1);
     }
@@ -28,7 +28,7 @@ const List = ({ list }) => {
       <span className="listTitle">{list.title}</span>
       <div className="wrapper">
         <FontAwesomeIcon
-          icon={faArrowLeft}
+          icon={faAngleLeft}
           className="sliderArrow left"
           onClick={() => handelClick("left")}
           style={{ display: !isMoved && "none" }}
@@ -39,7 +39,7 @@ const List = ({ list }) => {
           ))}
         </div>
         <FontAwesomeIcon
-          icon={faArrowRight}
+          icon={faAngleRight}
           className=" sliderArrow right"
           onClick={() => handelClick("right")}
         />

@@ -31,13 +31,14 @@ export const createMovie = async (movie, dispatch) => {
 };
 
 //UPDATE
-export const updateMovie = async (movie, dispatch) => {
+export const updateMovie = async (id, movie, dispatch) => {
     dispatch(updateMovieStart());
     try {
-       const res =  await axios.put("/movies/" + movie._id, movie,{
+       const res =  await axios.put(`/movies/${id}`, {
             headers: {
                 token: "Bearer " + JSON.parse(localStorage.getItem("user")).token,
-            },
+           },
+           movie
         });
         dispatch(updateMovieSuccess(res.data));
     } catch (error) {
